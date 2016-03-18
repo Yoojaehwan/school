@@ -2,6 +2,7 @@ package com.movie.com.web.grade;
 
 import java.util.ArrayList;
 
+
 /**
  * CRUD 
  *  C : Create 생성
@@ -18,11 +19,11 @@ public interface GradeService {
 	// 성적표 등록  C
 	public void input(GradeBean gradeBean); //기능은 추상화하고 속성은 추상화하지 않는다.
 	// 성적표 리스트 출력 R
-	public ArrayList<GradeBean> getList();
+	public GradeMemberBean getList();
 	// 성적표 조회(학번) R
-	public GradeBean getGradeByHak(int hak);
+	public GradeMemberBean getGradeByHak(int hak);
 	// 성적표 조회(이름) R
-	public ArrayList<GradeBean> getGradesByName(String name);
+	public GradeMemberBean getGradesByName(String name);
 	// 성적표 수정 U
 	public String update(GradeBean grade);
 	// 성적표 삭제 D

@@ -17,6 +17,10 @@ INSERT INTO Member(id, name, password, addr, birth)
 VALUES ('cha', '차두리', '1', '대전', 820115);
 INSERT INTO Member(id, name, password, addr, birth)
 VALUES ('park', '박지성', '1', '인천', 810221);
+INSERT INTO Member(id, name, password, addr, birth)
+VALUES ('kim2', '김유신', '1', '제주', 981210);
+
+SELECT * FROM Member;
 
 SELECT * FROM Member
 WHERE id = 'kim';
