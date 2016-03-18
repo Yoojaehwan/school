@@ -1,6 +1,7 @@
 package com.movie.com.web.grade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class GradeServiceImpl implements GradeService {
@@ -50,7 +51,7 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public GradeMemberBean getGradesByName(String name) {
+	public List<GradeMemberBean> getGradesByName(String name) {
 		// 성적표 조회(이름) R
 		ArrayList<GradeBean> tempList = new ArrayList<GradeBean>();
 		for (int i = 0; i < gradeList.size(); i++) {

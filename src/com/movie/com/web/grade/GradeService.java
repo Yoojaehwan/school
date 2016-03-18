@@ -1,6 +1,7 @@
 package com.movie.com.web.grade;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -23,7 +24,7 @@ public interface GradeService {
 	// 성적표 조회(학번) R
 	public GradeMemberBean getGradeByHak(int hak);
 	// 성적표 조회(이름) R
-	public GradeMemberBean getGradesByName(String name);
+	public List<GradeMemberBean> getGradesByName(String name);
 	// 성적표 수정 U
 	public String update(GradeBean grade);
 	// 성적표 삭제 D

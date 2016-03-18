@@ -1,6 +1,7 @@
 package com.movie.com.web.grade;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 
@@ -12,7 +13,7 @@ public interface GradeDAO {
 		// 성적표 조회(학번) R
 		public GradeMemberBean selectGradeByHak(int hak);
 		// 성적표 조회(이름) R
-		public GradeMemberBean selectGradesByName(String name);
+		public List<GradeMemberBean> selectGradesByName(String name);
 		// 성적표 수정 U
 		public String update(GradeBean grade);
 		// 성적표 삭제 D
