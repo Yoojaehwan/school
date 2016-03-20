@@ -24,16 +24,17 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public GradeMemberBean selectAll() {
-		GradeMemberBean bean = new GradeMemberBean();
+	public List<GradeMemberBean> selectAll() {
+		List<GradeMemberBean> list = new ArrayList<>();
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
 			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
 
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery("SELECT * FROM GradeMember;");
+			rs = stmt.executeQuery("SELECT * FROM GradeMember");
 
 			while (rs.next()) {
+				GradeMemberBean bean = new GradeMemberBean();
 				bean.setId(rs.getString("id"));
 				bean.setName(rs.getString("name"));
 				bean.setPassword(rs.getString("password"));
@@ -44,13 +45,15 @@ public class GradeDAOImpl implements GradeDAO {
 				bean.setJsp(rs.getInt("jsp"));
 				bean.setSpring(rs.getInt("spring"));
 				bean.setSql(rs.getInt("sql"));
+				
+				list.add(bean);
 			}
 		} catch (Exception e) {
 			System.out.println("selectAll 에러 발생");
 			e.printStackTrace();
 		}
 
-		return bean;
+		return list;
 	}
 
 	@Override
@@ -97,7 +100,6 @@ public class GradeDAOImpl implements GradeDAO {
 
 			stmt = conn.createStatement();
 			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE name =" + "'" + name + "'");
-			String sample = "";
 
 			while (rs.next()) {
 				GradeMemberBean bean = new GradeMemberBean();
@@ -114,8 +116,6 @@ public class GradeDAOImpl implements GradeDAO {
 				
 				list.add(bean);
 			}
-			
-			System.out.println("◆◆◆◆ : " + sample);
 		} catch (Exception e) {
 			System.out.println("selectMember의 에러 발생");
 			e.printStackTrace();
@@ -125,21 +125,82 @@ public class GradeDAOImpl implements GradeDAO {
 	}
 
 	@Override
-	public String update(GradeBean grade) {
-		// TODO Auto-generated method stub
+	public  String update(GradeBean grade) {
+		List<GradeMemberBean> list = new ArrayList<>();
+		try {
+			Class.forName(Constants.ORACLE_DRIVER);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("update Grade set java = ?, sql = ?, jsp = ?, spring = ?"+
+					"where hak = ?");
+
+			rs.
+		} catch (Exception e) {
+			System.out.println("selectMember의 에러 발생");
+			e.printStackTrace();
+		}
+
 		return null;
+	}
+	@Override
+	public List<GradeMemberBean> delete(int hak) {
+		
+		List<GradeMemberBean> list = new ArrayList<>();
+		try {
+			Class.forName(Constants.ORACLE_DRIVER);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM GradeMember WHERE hak =" + "'" + hak + "'");
+
+			while (rs.next()) {
+				GradeMemberBean bean = new GradeMemberBean();
+				bean.setId(rs.getString("id"));
+				bean.setName(rs.getString("name"));
+				bean.setPassword(rs.getString("password"));
+				bean.setAddr(rs.getString("addr"));
+				bean.setBirth(rs.getInt("birth"));
+				bean.setHak(rs.getInt("hak"));
+				bean.setJava(rs.getInt("java"));
+				bean.setJsp(rs.getInt("jsp"));
+				bean.setSpring(rs.getInt("spring"));
+				bean.setSql(rs.getInt("sql"));
+				
+				list.remove(bean);
+			}
+		} catch (Exception e) {
+			System.out.println("selectMember의 에러 발생");
+			e.printStackTrace();
+		}
+
+		return list;
 	}
 
-	@Override
-	public String delete(int hak) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public int count() {
-		// TODO Auto-generated method stub
-		return 0;
+		int count =0;
+		try {
+			Class.forName(Constants.ORACLE_DRIVER);
+			conn = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PASSWORD);
+
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT COUNT(*) AS count FROM GradeMember");
+
+			while (rs.next()) {
+				count = rs.getInt("count");
+			
+			}
+			/*stmt.executeQuery("SELECT * FROM GradeMember").last();
+			count = rs.getRow();*/
+		} catch (Exception e) {
+			System.out.println("count GradeMember의 에러 발생");
+			e.printStackTrace();
+		}
+
+		return count;
 	}
+	
 
 }

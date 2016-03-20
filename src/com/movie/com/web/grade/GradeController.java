@@ -21,11 +21,13 @@ public class GradeController {
 				service.input(new GradeBean(s.nextInt(), s.next(), s.nextInt(), s.nextInt(), s.nextInt(), s.nextInt()));		
 				break;
 			case 2:
-			
+				System.out.println("수정하는 성적의 java,sql,jsp,spring 점수를 입력하시오");
+				System.out.println(service.getGradeByHak(s.nextInt()));
 				break;
 			case 3:
-				System.out.println("삭제하려는 학번을 입력하세요");
-				System.out.println(service.getGradeByHak(s.nextInt()));
+				System.out.println("삭제하실 학번을 입력하세요");
+				System.out.println(service.delete(s.nextInt()));
+				System.out.println("삭제 완료 되었습니다.");
 				break;
 			case 4:
 				System.out.println(service.getList().toString());
@@ -36,7 +38,7 @@ public class GradeController {
 				break;
 			case 6:
 				System.out.println("조회 하려는 학번을 입력하세요");
-				System.out.println( service.getGradeByHak(s.nextInt()).toString());
+				System.out.println(service.getGradeByHak(s.nextInt()).toString());
 				break;
 			case 7:
 				System.out.println(service.getCount()+ " 명");

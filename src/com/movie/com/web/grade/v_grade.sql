@@ -18,3 +18,19 @@ SELECT * FROM GradeMember;
 
 SELECT * FROM GradeMember
 WHERE name = '김유신';
+
+
+
+SELECT COUNT(*) AS count
+FROM GradeMember;
+
+SELECT COUNT(*) FROM GradeMember;
+
+
+DELETE
+FROM GradeMember
+WHERE hak;
+
+
+TRUNCATE TABLE GradeMember;
+DROP TABLE GradeMember;

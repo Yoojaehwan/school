@@ -34,10 +34,10 @@ public class GradeServiceImpl implements GradeService {
 	}
 
 	@Override
-	public GradeMemberBean getList() {
+	public List<GradeMemberBean> getList() {
 		// 성적표 리스트 출력 R
 
-		return dao.selectAll();
+		return  dao.selectAll();
 
 	}
 
@@ -53,30 +53,22 @@ public class GradeServiceImpl implements GradeService {
 	@Override
 	public List<GradeMemberBean> getGradesByName(String name) {
 		// 성적표 조회(이름) R
-		ArrayList<GradeBean> tempList = new ArrayList<GradeBean>();
-		for (int i = 0; i < gradeList.size(); i++) {
-			if (name.equals(gradeList.get(i).getID())) {
-				tempList.add(gradeList.get(i));
-
-			}
-
-		}
-
+		
 		return dao.selectGradesByName(name);
 	}
 
 	@Override
 	public String update(GradeBean grade) {
 		
-		return null;
+		return dao.update(grade);
 		// 성적표 수정 U
 
 	}
 
 	@Override
-	public String delete(int hak) {
+	public List<GradeMemberBean> delete(int hak) {
 
-		return (gradeList.remove(this.getGradeByHak(hak))) ? "삭제성공" : "삭제실패";
+		return dao.delete(hak);
 		// 성적표 삭제 D
 
 	}
@@ -85,7 +77,7 @@ public class GradeServiceImpl implements GradeService {
 	public int getCount() {
 		// R 카운트 조회
 
-		return gradeList.size();
+		return dao.count();
 
 	}
 
